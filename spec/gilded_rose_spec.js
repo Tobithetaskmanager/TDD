@@ -80,7 +80,8 @@ describe("Gilded Rose", function() {
   });
 
   
-  it("should decrease quality by 1", function() {
+  //Conjured item
+  it("Conjured items should decrease quality by twice as fast", function() {
     items = [ new Item("Conjured Mana Cake", 3, 6) ];
     update_quality();
     expect(items[0].name).toEqual('Conjured Mana Cake');
@@ -88,13 +89,48 @@ describe("Gilded Rose", function() {
     expect(items[0].sell_in).toEqual(2);
   });
 
-  it("should decrease quality by 1", function() {
+  it("should decrease quality by 4 after sellin reaches 0", function() {
     items = [ new Item("Conjured Mana Cake", 0, 6) ];
     update_quality();
-    expect(items[0].quality).toEqual(4);
+    expect(items[0].quality).toEqual(2);
     expect(items[0].sell_in).toEqual(-1);
   });
   
+
+  it("Irregular quality adjustments", function() {
+    items = [ 
+      new Item("Sulfuras, Hand of Ragnaros", 0, 80), 
+      new Item("Aged Brie", 3, 4),
+      new Item("Conjured Mana Cake", 0, 6),
+    ];
+    update_quality();
+    expect(items[0].quality).toEqual(80);
+    expect(items[0].sell_in).toEqual(0);
+
+    expect(items[1].quality).toEqual(5);
+    expect(items[1].sell_in).toEqual(2);
+
+    expect(items[2].quality).toEqual(2);
+    expect(items[2].sell_in).toEqual(-1);
+  });
+
+  it("Below Sellin Date", function() {
+    items = [ 
+      new Item("Elixir of the Mongoose", -1, 7) ,
+      new Item("+5 Dexterity Vest", -2, 20), 
+      new Item("Conjured Mana Cake", 0, 6),
+    ];
+    update_quality();
+    expect(items[0].quality).toEqual(5);
+    expect(items[0].sell_in).toEqual(-2);
+
+    expect(items[1].quality).toEqual(18);
+    expect(items[1].sell_in).toEqual(-3);
+
+    expect(items[2].quality).toEqual(2);
+    expect(items[2].sell_in).toEqual(-1);
+  });
+
 
   
 
