@@ -48,14 +48,14 @@ describe("Gilded Rose", function() {
     expect(items[0].sell_in).toEqual(14);
   });
 
-  it("should increase quality by 1 as long as the sell_in value is over 10", function() {
+  it("should increase quality by 2 as long as the sell_in value is under 11", function() {
     items = [ new Item("Backstage passes to a TAFKAL80ETC concert", 10, 14) ];
     update_quality();
     expect(items[0].quality).toEqual(16);
     expect(items[0].sell_in).toEqual(9);
   });
 
-  it("should increase quality by 1 as long as the sell_in value is over 10", function() {
+  it("should increase quality by 3 as long as the sell_in value is under 6", function() {
     items = [ new Item("Backstage passes to a TAFKAL80ETC concert", 5, 40) ];
     update_quality();
     expect(items[0].quality).toEqual(43);
@@ -63,10 +63,10 @@ describe("Gilded Rose", function() {
   });
 
   it("should increase quality by 1 as long as the sell_in value is over 10", function() {
-    items = [ new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20) ];
+    items = [ new Item("Backstage passes to a TAFKAL80ETC concert", 0, 5) ];
     update_quality();
-    expect(items[0].quality).toEqual(22);
-    expect(items[0].sell_in).toEqual(9);
+    expect(items[0].quality).toEqual(0);
+    expect(items[0].sell_in).toEqual(0);
   });
 
   /*
