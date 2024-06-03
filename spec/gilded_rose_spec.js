@@ -26,12 +26,20 @@ describe("Gilded Rose", function() {
     items = [ new Item("Sulfuras, Hand of Ragnaros", 0, 80) ];
     update_quality();
     expect(items[0].quality).toEqual(80);
-    expect(items[0].sell_in).toEqual(1);
+    expect(items[0].sell_in).toEqual(0);
     
   });
 
+  // Ticket Tests
+
   it("should increase quality by 1 as long as the sell_in value is over 10", function() {
     items = [ new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20) ];
+    update_quality();
+    expect(items[0].quality).toEqual(21);
+  });
+
+  it("should increase quality by 1 as long as the sell_in value is over 10", function() {
+    items = [ new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20) ];
     update_quality();
     expect(items[0].quality).toEqual(21);
   });
