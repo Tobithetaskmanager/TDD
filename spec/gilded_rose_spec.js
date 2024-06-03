@@ -11,15 +11,24 @@ describe("Gilded Rose", function() {
     expect(items[0].sell_in).toEqual(9);
   });
 
+  //Aged Brie
   it("should increase quality by 1", function() {
     items = [ new Item("Aged Brie", 2, 0) ];
     update_quality();
     expect(items[0].name).toEqual('Aged Brie');
     expect(items[0].quality).toEqual(1);
     expect(items[0].sell_in).toEqual(1);
-    
   });
 
+  it("should increase quality by 1", function() {
+    items = [ new Item("Aged Brie", 1, 1) ];
+    update_quality();
+    expect(items[0].name).toEqual('Aged Brie');
+    expect(items[0].quality).toEqual(2);
+    expect(items[0].sell_in).toEqual(0);
+  });
+
+  //Elixir
   it("should decrease quality by 1", function() {
     items = [ new Item("Elixir of the Mongoose", 5, 7) ];
     update_quality();
@@ -28,6 +37,7 @@ describe("Gilded Rose", function() {
     expect(items[0].sell_in).toEqual(4);
   });
 
+  //Sulfuras
   it("Sulfuras remains legendary", function() {
     items = [ new Item("Sulfuras, Hand of Ragnaros", 0, 80) ];
     update_quality();
@@ -66,16 +76,25 @@ describe("Gilded Rose", function() {
     items = [ new Item("Backstage passes to a TAFKAL80ETC concert", 0, 5) ];
     update_quality();
     expect(items[0].quality).toEqual(0);
-    expect(items[0].sell_in).toEqual(0);
+    expect(items[0].sell_in).toEqual(-1);
   });
 
-  /*
+  
   it("should decrease quality by 1", function() {
     items = [ new Item("Conjured Mana Cake", 3, 6) ];
     update_quality();
-    expect(items[5].quality).toEqual(6);
+    expect(items[0].name).toEqual('Conjured Mana Cake');
+    expect(items[0].quality).toEqual(4);
+    expect(items[0].sell_in).toEqual(2);
   });
-  */
+
+  it("should decrease quality by 1", function() {
+    items = [ new Item("Conjured Mana Cake", 0, 6) ];
+    update_quality();
+    expect(items[0].quality).toEqual(4);
+    expect(items[0].sell_in).toEqual(-1);
+  });
+  
 
   
 
